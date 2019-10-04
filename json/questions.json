@@ -1,0 +1,38 @@
+{
+    "questionsArr": [
+        {"catgor": "Animals", 
+            "question": "What is the colour of a Zebra?", 
+            "trueAns1": "Black", 
+            "trueAns2": "White", 
+            "trueAns3": "",
+            "ansAlt1": "Black", 
+            "ansAlt2": "White", 
+            "ansAlt3": "Yellow", 
+            "ansParCorrResp": "Partially correct. The Zebra is both black and white in a striped pattern", 
+            "ansIncorrResp": "No, Zebras are not yellow.",
+            "ansFullCorrResp": "Correct! They are indeed both black and white, in a striped pattern."},
+            
+        {"catgor": "Cars", 
+            "question": "What is the most well known swedish car brand internationally?", 
+            "trueAns1": "Volvo", 
+            "trueAns2": "", 
+            "trueAns3": "",
+            "ansParCorrResp": "",
+            "ansFullCorrResp": "Correct!", 
+            "ansIncorrResp": "Incorrect.", 
+            "ansAlt1": "Saab", 
+            "ansAlt2": "Volvo", 
+            "ansAlt3": "Mistsubishi"}, 
+        {"catgor": "Science", 
+            "question": "Who invented the lightbulb?", 
+            "trueAns1": "Thomas Edison", 
+            "trueAns2": "Alessandro Volta", 
+            "trueAns3": "Warren de la Rue", 
+            "ansParCorrResp": "Partially correct. Thomas Edison did invent the first commercially successful lightbulb, but was not the only scientist involved in the developement. Allesandro Volta was the first scientist to develop a usable method of generating electricity, and Warren de la Rue designed one of the first lightbulbs deemed efficient.", 
+            "ansFullCorrResp": "Correct! They were all part of the developement of the lightbulb, even though Thomas Edison is commonly credited for the first commercially successful one.",
+            "ansIncorrResp": "",
+            "ansAlt1": "Alessandro Volta", 
+            "ansAlt2": "Thomas Edison", 
+            "ansAlt3": "Warren de la Rue"}
+    ]
+}

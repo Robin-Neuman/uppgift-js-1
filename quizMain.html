@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,42 +8,45 @@
     <title>Quiz-js1-uppgift</title>
     <link rel="stylesheet" href="/css/quizCss.css">
 </head>
+
 <body>
     <script src="/js/quizJs.js"></script>
 
     <div>
-    <h1>Welcome to the Super-Quiz!</h1>
-</div>
+        <h1>Welcome to the Super-Quiz!</h1>
+    </div>
 
-<div id="enterInfo">
-    <h3>Please enter the required information below before starting.</h3>
+    <div id="enterInfo">
+        <h3>Please enter the required information below before starting.</h3>
 
-    <label for="name">What is your name?</label>
-    <input type="text" id="name" name="name">
+        <label for="name">What is your name?</label>
+        <input type="text" id="name" name="name">
 
-    <label for="numOfQuest">How many questions do you wish to answer?</label>
-    <select name="numOfQuest" id="numOfQuest">
+        <label for="numOfQuest">How many questions do you wish to answer?</label>
+        <select name="numOfQuest" id="numOfQuest">
             <option value="1_quest">1</option>
             <option value="2_quest">2</option>
             <option value="3_quest">3</option>
-            <option value="4_quest">4</option>
-            <option value="5_quest">5</option>
-    </select>
-    <button id="postNum">Enter</button>    
-</div>
+        </select>
+        <button id="postNum">Enter</button>
+    </div>
+    
+    <div id="questMain">
+        <div id="questWin" class="hidden">
+            <p id="numAnsQuestCorr">You have answered this many questions correctly: </p>
+            <p id="numAnsQuestFal">You have answered this many questions incorrectly: </p>
+            <h2 id="currQuest">Question 1</h2>
+            <p id="questText">Here is what I ask</p>
+        </div>
 
-<div id="questWin" class="hidden">
-    <p id="numAnsQuest">You have answered this many questions: none</p>
-    <h2 id="currQuest">Question 1</h2>
-    <p id="questText">Here is what I ask</p>
-</div>
-
-<div class="hidden" id="alterWin">
-    <h4 id="ansTitle">Choose one answer</h4>
-    <input type="radio" name="answer" id="answer1"><label for="answer">First answer</label>
-    <input type="radio" name="answer" id="answer2"><label for="answer">Second answer</label>
-    <input type="radio" name="answer" id="answer3"><label for="answer">Third answer</label>
-    <button name="btn" id="postAns">Next</button>
-</div>
+        <div class="hidden" id="alterWin">
+            <h4 id="ansTitle">Choose your answer(s)</h4>
+            <input type="checkbox" name="answer" id="answer1"><label for="answer">First answer</label>
+            <input type="checkbox" name="answer" id="answer2"><label for="answer">Second answer</label>
+            <input type="checkbox" name="answer" id="answer3"><label for="answer">Third answer</label>
+            <button name="btn" id="postAns">Next</button>
+        </div>
+    </div>
 </body>
+
 </html>
