@@ -16,15 +16,30 @@ document.addEventListener("DOMContentLoaded", function (e) {
                 document.getElementById("enterInfo").classList.add("hidden");
 
                 let newP = document.createElement("p");
-                let newPText = document.createTextNode("You have answered this many questions: " + this.ansQuests);
+                newP.setAttribute("id", "ansQuestText");
+                let newPText = document.createTextNode("You have answered this many questions: ");
                 newP.appendChild(newPText);
-                let newP2 = document.createElement("p");
+                let newPNum = document.createTextNode(this.ansQuests);
+                newP.appendChild(newPNum);
 
                 let target = document.getElementById("ansQuest");
                 target.appendChild(newP);
-                target.appendChild(newP2);
 
             }
+        }
+        updNumQuests(){
+            let target = document.getElementById("ansQuest");
+            let targetChild = document.getElementById("ansQuestText");
+            target.removeChild(targetChild);
+            let newP = document.createElement("p");
+            newP.setAttribute("id", "ansQuestText");
+            let newPText = document.createTextNode("You have answered this many questions: ");
+            newP.appendChild(newPText);
+            this.ansQuests = ansQuestsUpd;
+            let newPNum = document.createTextNode(this.ansQuests);
+            newP.appendChild(newPNum);
+            
+            target.appendChild(newP);
         }
     }
 
@@ -172,7 +187,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
     let currIndex = 0;
     let chosQuests = [];
     let currQuests = [];
-    let ansQuests = 0;
+    let ansQuestsUpd = 0;
     let corrAnswers = 0;
 
 
@@ -181,7 +196,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
     submit.addEventListener("click", function (e) {
 
 
-        let game = new Quiz(document.getElementById("name").value, document.getElementById("numOfQuest"), ansQuests);
+        let game = new Quiz(document.getElementById("name").value, document.getElementById("numOfQuest"), ansQuestsUpd);
         game.checkInfo();
         //If the user has entered a name the questions will be added
         if (game.name != "") {
@@ -208,14 +223,14 @@ document.addEventListener("DOMContentLoaded", function (e) {
             requestJSON.send();
 
         }
-
-    })
     //Adds a listener on the 'next' button
     document.addEventListener("click", function (e) {
         if (event.target.classList.contains("nextButton")) {
             for (let i = 0; i < currQuests.length; i++) {
                 if (event.target.parentNode.parentNode.className == currQuests[i]) {
-                    ansQuests++;
+                    ansQuestsUpd++;
+                    game.updNumQuests()
+                    console.log(ansQuestsUpd)
                     document.getElementById(currQuests[i + 1]).classList.remove("hidden");
 
                 }
@@ -235,7 +250,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
                 if (event.target.parentNode.parentNode.className == currQuests[i]) {
 
                     document.getElementById(currQuests[i - 1]).classList.remove("hidden");
-                    ansQuests--;
+                    ansQuestsUpd--;
+                    game.updNumQuests()
+                    console.log(ansQuestsUpd)
                 }
             }
 
@@ -247,7 +264,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
     //Adds a listener on the 'submit' button
     document.addEventListener("click", function (e) {
         if (event.target.classList.contains("submitButton")) {
-            ansQuests++;
+            ansQuestsUpd++;
+            game.updNumQuests()
+            console.log(ansQuestsUpd)
             event.target.parentNode.parentNode.classList.add("hidden");
 
             for (let i = 0; i < chosQuests.length; i++) {
@@ -257,6 +276,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
             console.log(corrAnswers);
         }
     })
+    })
+
 
 
 });
