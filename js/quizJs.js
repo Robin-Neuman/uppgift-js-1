@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
             if (this.name != "") {
                 document.getElementById("enterInfo").classList.add("hidden");
 
-                let newP = document.createElement("p");
+                let newP = document.createElement("h5");
                 newP.setAttribute("id", "ansQuestText");
                 let newPText = document.createTextNode("You have answered this many questions: ");
                 newP.appendChild(newPText);
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
             let target = document.getElementById("ansQuest");
             let targetChild = document.getElementById("ansQuestText");
             target.removeChild(targetChild);
-            let newP = document.createElement("p");
+            let newP = document.createElement("h5");
             newP.setAttribute("id", "ansQuestText");
             let newPText = document.createTextNode("You have answered this many questions: ");
             newP.appendChild(newPText);
@@ -40,6 +40,11 @@ document.addEventListener("DOMContentLoaded", function (e) {
             newP.appendChild(newPNum);
             
             target.appendChild(newP);
+        }
+        remNumQuests(){
+            let target = document.getElementById("ansQuest");
+            let targetChild = document.getElementById("ansQuestText");
+            target.removeChild(targetChild);
         }
     }
 
@@ -181,6 +186,29 @@ document.addEventListener("DOMContentLoaded", function (e) {
                 }
             }
         }
+        endScreen(){
+            let target = document.getElementById("endScrDiv");
+            let newH6 = document.createElement("h6");
+            newH6.setAttribute("id", "endScrH6");
+            let newH6Text = document.createTextNode("Congratulations! Your final score was: ");
+            newH6.appendChild(newH6Text);
+            let newH7 = document.createElement("h7");
+            newH7.setAttribute("id", "endScrH7");
+            let newH7Num = document.createTextNode(corrAnswers);
+            newH7.appendChild(newH7Num);
+            let newH8 = document.createElement("h8");
+            newH8.setAttribute("id", "endScrH8");
+            let newH8Num = document.createTextNode("Would you like to play again?");
+            newH8.appendChild(newH8Num);
+            let newButton = document.createElement("button");
+            newButton.classList.add("resetButton");
+            newButton.innerHTML = "Restart";
+
+            target.appendChild(newH6);
+            target.appendChild(newH7);
+            target.appendChild(newH8);
+            target.appendChild(newButton);
+        }
     }
 
     //Current index of question being created, for usage in creating div class
@@ -205,7 +233,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
                 if (this.readyState == 4 && this.status == 200) {
                     var myQuest = JSON.parse(this.responseText);
                     for (let i = 0; i < game.quests; i++) {
-                        let question = new Question(myQuest.questionsArr[i].catgor, myQuest.questionsArr[i].question,
+                        var question = new Question(myQuest.questionsArr[i].catgor, myQuest.questionsArr[i].question,
                             [myQuest.questionsArr[i].ansAlt1, myQuest.questionsArr[i].ansAlt2, myQuest.questionsArr[i].ansAlt3],
                             [myQuest.questionsArr[i].trueAns1, myQuest.questionsArr[i].trueAns2, myQuest.questionsArr[i].trueAns3],
                             myQuest.questionsArr[i].ansIncorrResp, myQuest.questionsArr[i].ansParCorrResp, myQuest.questionsArr[i].ansFullCorrResp, document.getElementById("numOfQuest"));
@@ -265,7 +293,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
     document.addEventListener("click", function (e) {
         if (event.target.classList.contains("submitButton")) {
             ansQuestsUpd++;
-            game.updNumQuests()
+            game.remNumQuests()
             console.log(ansQuestsUpd)
             event.target.parentNode.parentNode.classList.add("hidden");
 
@@ -274,6 +302,14 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
             }
             console.log(corrAnswers);
+            chosQuests[0].endScreen()
+            console.log(chosQuests[0]);
+        }
+    })
+
+    document.addEventListener("click", function (e) {
+        if (event.target.classList.contains("resetButton")) {
+            window.location.reload();
         }
     })
     })
