@@ -103,16 +103,14 @@ document.addEventListener("DOMContentLoaded", function (e) {
             for (let i = 1; i < 4; i++) {
                 let newInput = document.createElement("input");
                 let newLabel = document.createElement("label");
-                newInput.classList.add("ans");
+                newInput.classList.add("ans" + i);
+                newLabel.classList.add("ans" + i);
                 newInput.classList.add("hidden");
-                newLabel.classList.add("ans");
                 newInput.setAttribute("id", "ans" + i);
                 newInput.setAttribute("value", this.ansAlt[i - 1]);
                 newInput.setAttribute("type", "checkbox");
-                newInput.classList.add("ansForQuest" + currIndexString);
-                newLabel.setAttribute("for", "ans" + [i])
                 newLabel.innerHTML = this.ansAlt[i - 1];
-                newQuestDiv.appendChild(newInput);
+                newLabel.appendChild(newInput);
                 newQuestDiv.appendChild(newLabel);
             }
 
@@ -162,7 +160,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
                     for (let strings of corrAns) {
                         if (strings === totAns[i].value) {
                             corrAnswers++;
-                            console.log(corrAnswers);
                         }
                         else {
                             continue;
@@ -183,7 +180,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
                 if (totAns[i].value !== corrAns[i] && totAns[i].checked) {
                     corrAnswers--;
-                    console.log(corrAnswers);
 
                 }
             }
@@ -218,11 +214,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
                             myQuest.questionsArr[i].ansIncorrResp, myQuest.questionsArr[i].ansParCorrResp, myQuest.questionsArr[i].ansFullCorrResp, document.getElementById("numOfQuest"));
                         currIndex = i;
                         chosQuests.push(question);
-                        console.log(chosQuests);
                         chosQuests[i].addQuests();
                         chosQuests[i].addAns();
                     }
-                    console.log(currQuests);
                 }
 
             }
@@ -237,7 +231,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
                     if (event.target.parentNode.parentNode.className == currQuests[i]) {
                         ansQuestsUpd++;
                         game.updNumQuests()
-                        console.log(ansQuestsUpd)
                         document.getElementById(currQuests[i + 1]).classList.remove("hidden");
 
                     }
@@ -259,7 +252,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
                         document.getElementById(currQuests[i - 1]).classList.remove("hidden");
                         ansQuestsUpd--;
                         game.updNumQuests()
-                        console.log(ansQuestsUpd)
                     }
                 }
 
@@ -273,13 +265,13 @@ document.addEventListener("DOMContentLoaded", function (e) {
             if (event.target.classList.contains("submitButton")) {
                 ansQuestsUpd++;
                 game.remNumQuests()
-                console.log(ansQuestsUpd)
                 event.target.parentNode.parentNode.classList.add("hidden");
                 document.getElementById("questMain").classList.add("hidden");
 
                 for (let i = 0; i < chosQuests.length; i++) {
                     chosQuests[i].calcCorrAns();
 
+                    //Function that add endscreen content
                 }
                 function endScreen() {
                     let target = document.getElementById("endScrDiv");
@@ -308,21 +300,25 @@ document.addEventListener("DOMContentLoaded", function (e) {
             }
         })
 
+        //If the 'restart' button is pressed it reloads the page
         document.addEventListener("click", function (e) {
             if (event.target.classList.contains("resetButton")) {
                 window.location.reload();
             }
         })
 
+        //If a checkbox is clicked, add a new class to highlight it, and if it is highlighted reset to original class
         document.addEventListener("click", function (e) {
-            if (event.target.classList.contains("ans")) {
-                event.target.classList.add("sel");
-                event.target.classList.remove("ans");
+            for (let i = 1; i < 4; i++) {
+            if (event.target.classList.contains("ans" + i)) {
+                event.target.classList.add("sel" + i);
+                event.target.classList.remove("ans" + i);
             }
-            else if (event.target.classList.contains("sel")){
-                event.target.classList.remove("sel");
-                event.target.classList.add("ans");
+            else if (event.target.classList.contains("sel" + i)){
+                event.target.classList.remove("sel" + i);
+                event.target.classList.add("ans" + i);
             }
+        }
         })
 
 

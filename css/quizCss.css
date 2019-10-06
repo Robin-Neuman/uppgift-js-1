@@ -74,7 +74,7 @@ h4{
     margin: 10px auto auto auto; 
     font-size: 1.8em;
 }
-.ans{
+.ans1, .ans2, .ans3{
     display: block;
     background-color: #D0CEE9;
     border: #52545C 1px solid;
@@ -101,7 +101,7 @@ h4{
     font-size: 2em;
     width: 400px;
 }
-.sel{
+.sel1, .sel2, .sel3{
     display: block;
     background-color: #D0CEE9;
     border: white 1px solid;
