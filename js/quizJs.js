@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
                 target.appendChild(newP);
             }
         }
-        updNumQuests(){
+        updNumQuests() {
             let target = document.getElementById("ansQuest");
             let targetChild = document.getElementById("ansQuestText");
             target.removeChild(targetChild);
@@ -37,10 +37,10 @@ document.addEventListener("DOMContentLoaded", function (e) {
             this.ansQuests = ansQuestsUpd;
             let newPNum = document.createTextNode(this.ansQuests);
             newP.appendChild(newPNum);
-            
+
             target.appendChild(newP);
         }
-        remNumQuests(){
+        remNumQuests() {
             let target = document.getElementById("ansQuest");
             let targetChild = document.getElementById("ansQuestText");
             target.removeChild(targetChild);
@@ -76,6 +76,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
             let newQuestTit = document.createTextNode("Question " + currIndexString);
             let newCat = document.createTextNode("Category: " + this.catgor);
             let targetDiv = document.getElementById("questMain");
+            targetDiv.classList.remove("hidden");
             newH2.appendChild(newQuestTit);
             newH3.appendChild(newCat);
             newQuestDiv.appendChild(newH2);
@@ -102,8 +103,10 @@ document.addEventListener("DOMContentLoaded", function (e) {
             for (let i = 1; i < 4; i++) {
                 let newInput = document.createElement("input");
                 let newLabel = document.createElement("label");
-                newInput.classList.add("ans" + i);
-                newInput.setAttribute("name", "ans" + i);
+                newInput.classList.add("ans");
+                newInput.classList.add("hidden");
+                newLabel.classList.add("ans");
+                newInput.setAttribute("id", "ans" + i);
                 newInput.setAttribute("value", this.ansAlt[i - 1]);
                 newInput.setAttribute("type", "checkbox");
                 newInput.classList.add("ansForQuest" + currIndexString);
@@ -227,90 +230,103 @@ document.addEventListener("DOMContentLoaded", function (e) {
             requestJSON.send();
 
         }
-    //Adds a listener on the 'next' button
-    document.addEventListener("click", function (e) {
-        if (event.target.classList.contains("nextButton")) {
-            for (let i = 0; i < currQuests.length; i++) {
-                if (event.target.parentNode.parentNode.className == currQuests[i]) {
-                    ansQuestsUpd++;
-                    game.updNumQuests()
-                    console.log(ansQuestsUpd)
-                    document.getElementById(currQuests[i + 1]).classList.remove("hidden");
+        //Adds a listener on the 'next' button
+        document.addEventListener("click", function (e) {
+            if (event.target.classList.contains("nextButton")) {
+                for (let i = 0; i < currQuests.length; i++) {
+                    if (event.target.parentNode.parentNode.className == currQuests[i]) {
+                        ansQuestsUpd++;
+                        game.updNumQuests()
+                        console.log(ansQuestsUpd)
+                        document.getElementById(currQuests[i + 1]).classList.remove("hidden");
+
+                    }
+
+
 
                 }
-                
-                    
-                
+
+                event.target.parentNode.parentNode.classList.add("hidden");
+
             }
+        })
+        //Adds a listener on the 'previous' button
+        document.addEventListener("click", function (e) {
+            if (event.target.classList.contains("prevButton")) {
+                for (let i = 0; i < currQuests.length; i++) {
+                    if (event.target.parentNode.parentNode.className == currQuests[i]) {
 
-            event.target.parentNode.parentNode.classList.add("hidden");
-
-        }
-    })
-    //Adds a listener on the 'previous' button
-    document.addEventListener("click", function (e) {
-        if (event.target.classList.contains("prevButton")) {
-            for (let i = 0; i < currQuests.length; i++) {
-                if (event.target.parentNode.parentNode.className == currQuests[i]) {
-
-                    document.getElementById(currQuests[i - 1]).classList.remove("hidden");
-                    ansQuestsUpd--;
-                    game.updNumQuests()
-                    console.log(ansQuestsUpd)
+                        document.getElementById(currQuests[i - 1]).classList.remove("hidden");
+                        ansQuestsUpd--;
+                        game.updNumQuests()
+                        console.log(ansQuestsUpd)
+                    }
                 }
-            }
 
-            event.target.parentNode.parentNode.classList.add("hidden");
-
-        }
-    })
-
-    //Adds a listener on the 'submit' button
-    document.addEventListener("click", function (e) {
-        if (event.target.classList.contains("submitButton")) {
-            ansQuestsUpd++;
-            game.remNumQuests()
-            console.log(ansQuestsUpd)
-            event.target.parentNode.parentNode.classList.add("hidden");
-
-            for (let i = 0; i < chosQuests.length; i++) {
-                chosQuests[i].calcCorrAns();
+                event.target.parentNode.parentNode.classList.add("hidden");
 
             }
-            function endScreen(){
-                let target = document.getElementById("endScrDiv");
-                let newH2 = document.createElement("h2");
-                newH2.setAttribute("id", "endScrH2");
-                let newH2Text = document.createTextNode("Congratulations! Your final score was: ");
-                newH2.appendChild(newH2Text);
-                let newH3 = document.createElement("h3");
-                newH3.setAttribute("id", "endScrH3");
-                let newH3Num = document.createTextNode(corrAnswers);
-                newH3.appendChild(newH3Num);
-                let newH4 = document.createElement("h4");
-                newH4.setAttribute("id", "endScrH4");
-                let newH4Num = document.createTextNode("Would you like to play again?");
-                newH4.appendChild(newH4Num);
-                let newButton = document.createElement("button");
-                newButton.classList.add("resetButton");
-                newButton.innerHTML = "Restart";
-    
-                target.appendChild(newH2);
-                target.appendChild(newH3);
-                target.appendChild(newH4);
-                target.appendChild(newButton);
+        })
+
+        //Adds a listener on the 'submit' button
+        document.addEventListener("click", function (e) {
+            if (event.target.classList.contains("submitButton")) {
+                ansQuestsUpd++;
+                game.remNumQuests()
+                console.log(ansQuestsUpd)
+                event.target.parentNode.parentNode.classList.add("hidden");
+                document.getElementById("questMain").classList.add("hidden");
+
+                for (let i = 0; i < chosQuests.length; i++) {
+                    chosQuests[i].calcCorrAns();
+
+                }
+                function endScreen() {
+                    let target = document.getElementById("endScrDiv");
+                    let newH2 = document.createElement("h2");
+                    newH2.setAttribute("id", "endScrH2");
+                    let newH2Text = document.createTextNode("Congratulations! Your final score was: ");
+                    newH2.appendChild(newH2Text);
+                    let newH3 = document.createElement("h3");
+                    newH3.setAttribute("id", "endScrH3");
+                    let newH3Num = document.createTextNode(corrAnswers);
+                    newH3.appendChild(newH3Num);
+                    let newH4 = document.createElement("h4");
+                    newH4.setAttribute("id", "endScrH4");
+                    let newH4Num = document.createTextNode("Would you like to play again?");
+                    newH4.appendChild(newH4Num);
+                    let newButton = document.createElement("button");
+                    newButton.classList.add("resetButton");
+                    newButton.innerHTML = "Restart";
+
+                    target.appendChild(newH2);
+                    target.appendChild(newH3);
+                    target.appendChild(newH4);
+                    target.appendChild(newButton);
+                }
+                endScreen();
             }
-            endScreen();
-        }
-    })
+        })
 
-    document.addEventListener("click", function (e) {
-        if (event.target.classList.contains("resetButton")) {
-            window.location.reload();
-        }
-    })
-    })
+        document.addEventListener("click", function (e) {
+            if (event.target.classList.contains("resetButton")) {
+                window.location.reload();
+            }
+        })
+
+        document.addEventListener("click", function (e) {
+            if (event.target.classList.contains("ans")) {
+                event.target.classList.add("sel");
+                event.target.classList.remove("ans");
+            }
+            else if (event.target.classList.contains("sel")){
+                event.target.classList.remove("sel");
+                event.target.classList.add("ans");
+            }
+        })
 
 
+
+    })
 
 });

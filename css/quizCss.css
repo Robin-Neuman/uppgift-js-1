@@ -10,21 +10,43 @@ h1{
     padding: 10px;
     margin: 200px 0px 200px 0px;
     font-size: 4em;    
+    min-width: 500px;
 
 }
+h2{
 
+    background-color: #CA9491;
+    border: #52545C 1px solid;
+    padding: 10px;
+    margin: auto auto auto auto; 
+    font-size: 2em;    
+
+}
 #questMain{
+    
     background-color: #D0CEE9;
     border: #52545C 1px solid;
-
+    width: 600px;
+    margin: auto auto auto auto; 
 }
 
 h3{
     display: inline-block;
-    background-color: #D0CEE9;
+    background-color: #A7A1C4;
     border: #52545C 1px solid;
     padding: 10px;
     font-size: 1.8em;
+
+}
+
+h4{
+
+    background-color: #CA9491;
+    border: #52545C 1px solid;
+    padding: 10px;
+    width: 240px;
+    margin: 40px auto 10px auto; 
+    font-size: 1.5em;    
 
 }
 
@@ -33,13 +55,62 @@ h3{
     border: #52545C 1px solid;
     padding: 10px;
     font-size: 1.5em;
+    width: 600px;
+    margin: 10px auto auto auto; 
 }
 #reqInfo2{
     background-color: #D0CEE9;
     border: #52545C 1px solid;
     padding: 10px;
     font-size: 1.5em;
+    width: 600px;
+    margin: 10px auto auto auto; 
 }
+.questText{
+    background-color: #A7A1C4;
+    border: #52545C 1px solid;
+    padding: 10px;
+    width: 400px;
+    margin: 10px auto auto auto; 
+    font-size: 1.8em;
+}
+.ans{
+    display: block;
+    background-color: #D0CEE9;
+    border: #52545C 1px solid;
+    padding: 10px;
+    font-size: 1.5em;
+    width: 400px;
+    margin: 10px auto auto auto; 
+}
+
+.submitButton, .prevButton, .nextButton, .resetButton{
+    display: inline-block;
+    background-color: #52545C;
+    border:black 1px solid;
+    padding: 10px;
+    font-size: 1.5em;
+    width: 120px;
+    margin: 10px 10px 10px auto;
+}
+#endScrH3{
+    font-size: 5em;
+    width: 130px;
+}
+#endScrH4{
+    font-size: 2em;
+    width: 400px;
+}
+.sel{
+    display: block;
+    background-color: #D0CEE9;
+    border: white 1px solid;
+    padding: 10px;
+    font-size: 1.5em;
+    width: 400px;
+    margin: 10px auto auto auto; 
+}
+
 .hidden{
     display: none;
 }
