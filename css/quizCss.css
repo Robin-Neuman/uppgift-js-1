@@ -1,5 +1,44 @@
 body{
-    background-color: rgb(54, 54, 54);
+    text-align: center;
+    font-family: Calibri;
+}
+h1{
+
+    display: inline-block;
+    background-color: #CA9491;
+    border: #52545C 2px solid;
+    padding: 10px;
+    margin: 200px 0px 200px 0px;
+    font-size: 4em;    
+
+}
+
+#questMain{
+    background-color: #D0CEE9;
+    border: #52545C 1px solid;
+
+}
+
+h3{
+    display: inline-block;
+    background-color: #D0CEE9;
+    border: #52545C 1px solid;
+    padding: 10px;
+    font-size: 1.8em;
+
+}
+
+#reqInfo1{
+    background-color: #D0CEE9;
+    border: #52545C 1px solid;
+    padding: 10px;
+    font-size: 1.5em;
+}
+#reqInfo2{
+    background-color: #D0CEE9;
+    border: #52545C 1px solid;
+    padding: 10px;
+    font-size: 1.5em;
 }
 .hidden{
     display: none;

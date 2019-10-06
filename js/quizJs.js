@@ -24,7 +24,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
                 let target = document.getElementById("ansQuest");
                 target.appendChild(newP);
-
             }
         }
         updNumQuests(){
@@ -186,29 +185,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
                 }
             }
         }
-        endScreen(){
-            let target = document.getElementById("endScrDiv");
-            let newH6 = document.createElement("h6");
-            newH6.setAttribute("id", "endScrH6");
-            let newH6Text = document.createTextNode("Congratulations! Your final score was: ");
-            newH6.appendChild(newH6Text);
-            let newH7 = document.createElement("h7");
-            newH7.setAttribute("id", "endScrH7");
-            let newH7Num = document.createTextNode(corrAnswers);
-            newH7.appendChild(newH7Num);
-            let newH8 = document.createElement("h8");
-            newH8.setAttribute("id", "endScrH8");
-            let newH8Num = document.createTextNode("Would you like to play again?");
-            newH8.appendChild(newH8Num);
-            let newButton = document.createElement("button");
-            newButton.classList.add("resetButton");
-            newButton.innerHTML = "Restart";
-
-            target.appendChild(newH6);
-            target.appendChild(newH7);
-            target.appendChild(newH8);
-            target.appendChild(newButton);
-        }
     }
 
     //Current index of question being created, for usage in creating div class
@@ -301,9 +277,30 @@ document.addEventListener("DOMContentLoaded", function (e) {
                 chosQuests[i].calcCorrAns();
 
             }
-            console.log(corrAnswers);
-            chosQuests[0].endScreen()
-            console.log(chosQuests[0]);
+            function endScreen(){
+                let target = document.getElementById("endScrDiv");
+                let newH2 = document.createElement("h2");
+                newH2.setAttribute("id", "endScrH2");
+                let newH2Text = document.createTextNode("Congratulations! Your final score was: ");
+                newH2.appendChild(newH2Text);
+                let newH3 = document.createElement("h3");
+                newH3.setAttribute("id", "endScrH3");
+                let newH3Num = document.createTextNode(corrAnswers);
+                newH3.appendChild(newH3Num);
+                let newH4 = document.createElement("h4");
+                newH4.setAttribute("id", "endScrH4");
+                let newH4Num = document.createTextNode("Would you like to play again?");
+                newH4.appendChild(newH4Num);
+                let newButton = document.createElement("button");
+                newButton.classList.add("resetButton");
+                newButton.innerHTML = "Restart";
+    
+                target.appendChild(newH2);
+                target.appendChild(newH3);
+                target.appendChild(newH4);
+                target.appendChild(newButton);
+            }
+            endScreen();
         }
     })
 
